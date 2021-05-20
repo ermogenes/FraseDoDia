@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frase do Dia</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-flow: column;
+            height: 100vh;
+            margin: 0;
+        }
+
+        body > * {
+            flex: 0;
+        }
+
+        #fraseExibicao {
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="titulo">Frase do Dia</h1>
+    <div id="fraseExibicao"></div>
+    <p id="rodape"></h1>Etec Adolpho Berezin - Informática</p>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            fraseExibicao = document.getElementById('fraseExibicao');
+            fraseExibicao.innerText = 'carregando...';
+            const url = 'https://quote-garden.herokuapp.com/api/v3/quotes/random';
+            const response = await fetch(url);
+            const result = await response.json();
+            fraseExibicao.innerText = result.data[0].quoteText;
+        });
+    </script>
+</body>
+</html>
